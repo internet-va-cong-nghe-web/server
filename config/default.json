@@ -1,0 +1,4 @@
+{
+    "jwtSecret": "yourSecretKey",
+    "mongoURI": "mongodb+srv://giahuy:user123@cluster0.zlwag.mongodb.net/"
+  }

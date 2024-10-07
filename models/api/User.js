@@ -1,19 +1,34 @@
 const express = require('express');
 const router = express.Router();
-
-const UserSchema=new mongoose.Schema({
-  name:{type:String,required:true},
-  // email:{...unique:true},
-   password,
-   avatar:{type},
-   data:{type:Date,default:Date.now}});
-
-const{check, validationResult} = require('express-validator/check');
+const {check, validationResult} = require('express-validator');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 const config = require('config');
+const mongoose=require('mongoose');
+
+const UserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  avatar: {
+    type: String
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  }
+});
 
 router.post(
   '/',
@@ -85,4 +100,4 @@ router.post(
 
 );
 
-module.exports=User=mongoose.user('user',UserSchema);
+module.exports=User=mongoose.model('user',UserSchema);

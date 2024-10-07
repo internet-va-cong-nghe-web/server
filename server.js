@@ -4,8 +4,8 @@ const port = 5000;
 
 app.use(express.json());
 const mongoose = require('mongoose');
-const User = require('./models/User');
-const mongoURL = 'mongodb+srv://giahuy:DOsQO5aRdx0KvXQi@cluster0.zlwag.mongodb.net/'; 
+const User = require('./models/api/User');
+const mongoURL = 'mongodb+srv://giahuy:user123@cluster0.zlwag.mongodb.net/'; 
 
 mongoose.connect(mongoURL, {
   useNewUrlParser: true,
@@ -18,6 +18,10 @@ mongoose.connect(mongoURL, {
   console.error('Failed to connect to MongoDB', err);
 });
 
+const PORT = process.env.PORT || 5000;
+app.listen(PORT , () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 // API để lấy dữ liệu từ MongoDB
 app.get('/api/users', async (req, res) => {
     try {
@@ -27,11 +31,6 @@ app.get('/api/users', async (req, res) => {
       res.status(500).json({ error: 'Failed to fetch users' });
     }
   });
-  
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
-
 // // GET: Lấy danh sách người dùng
 // app.get('/api/users', (req, res) => {
 //   res.json({ users : ["huy", "userTwo", "userThree"] });
@@ -69,9 +68,4 @@ app.get('/api/users', async (req, res) => {
 //   } else {
 //     res.status(400).json({ message: 'Invalid user index' });
 //   }
-// });
-
-// // Khởi động server
-// app.listen(port, () => {
-//   console.log(`Server started on port ${port}`);
 // });
