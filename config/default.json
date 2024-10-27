@@ -2,3 +2,4 @@
     "jwtSecret": "user123",
     "mongoURL": "mongodb+srv://giahuy:user123@cluster0.zlwag.mongodb.net/novelweb_db"
   }
+  
